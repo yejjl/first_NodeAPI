@@ -31,7 +31,7 @@ exports.updateUserInfo = (req, res) => {
 		//语句执行失败
 		if (err) return res.cc(err);
 		//影响行数不为1
-		if (results.affectedRows !== 1) return res.cc('更新信息失败2');
+		if (results.affectedRows !== 1) return res.cc('更新信息失败');
 
 		//成功
 		res.cc('更新信息成功', 0);
@@ -63,5 +63,19 @@ exports.updatePassword = (req, res) => {
 			if (results.affectedRows !== 1) return res.cc('更新密码失败');
 			res.cc('更新密码成功', 0);
 		});
+	});
+};
+
+//更新头像
+exports.updateAvatar = (req, res) => {
+	//定义更新头像的ssql语句
+	const sql = `update ev_users set user_pic=? where id=?`;
+	db.query(sql, [req.body.avatar, req.user.id], (err, results) => {
+		//执行语句失败
+		if (err) return res.cc(err);
+		//判断影响行数
+		if (results.affectedRows !== 1) return res.cc('更新头像失败');
+		//成功
+		res.cc('更换头像成功', 0);
 	});
 };

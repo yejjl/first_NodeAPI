@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 //导入全局配置文件
 const config = require('../config');
+
 //注册用户处理函数
 exports.regUser = (req, res) => {
 	//获取用户提交到服务器的信息
