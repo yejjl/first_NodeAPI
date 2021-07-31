@@ -14,7 +14,7 @@ const {
 	delete_cate_schema,
 	get_cate_schema,
 	update_cate_schema,
-} = require('../schema/article');
+} = require('../schema/artcate');
 
 //获取文章分类列表数据的路由
 router.get('/cates', artCate_handler.getArtCates);

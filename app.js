@@ -11,6 +11,9 @@ app.use(cors());
 //配置表单解析中间件,仅application/x-www-form-urlencoded格式
 app.use(express.urlencoded({ extended: false }));
 
+//托管静态资源文件
+app.use('/uploads', express.static('./uploads'));
+
 //在路由之前，封装res.cc函数
 app.use((req, res, next) => {
 	//status 默认值为1，表示失败的情况
@@ -40,6 +43,9 @@ app.use('/my', userinfoRouter);
 //导入并使用文章分类路由模块
 const artCateRouter = require('./router/artcate');
 app.use('/my/article', artCateRouter);
+//导入并使用文章的路由
+const articleRouter = require('./router/article');
+app.use('/my/article', articleRouter);
 
 //定义错误中间件
 app.use((err, req, res, next) => {
